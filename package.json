@@ -1,0 +1,29 @@
+{
+  "name": "reddit_clone_express",
+  "version": "1.0.0",
+  "description": "For this assignment you will need to combine your knowledge of models, association, and auth to build a clone of Reddit!",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/415DomSmith/reddit_clone_express.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/415DomSmith/reddit_clone_express/issues"
+  },
+  "homepage": "https://github.com/415DomSmith/reddit_clone_express",
+  "dependencies": {
+    "bcrypt": "^0.8.3",
+    "body-parser": "^1.13.1",
+    "cookie-session": "^1.1.0",
+    "ejs": "^2.3.1",
+    "express": "^4.12.4",
+    "method-override": "^2.3.3",
+    "mongoose": "^4.0.5",
+    "morgan": "^1.6.0"
+  }
+}
