@@ -1,0 +1,35 @@
+<% include ../partials/header %>
+
+<h1>Edit Your Post</h1>
+
+<form action="/posts">
+	<input type="submit" class ="btn btn-xs btn-success" value="Return to Posts">
+</form>
+<form action="/posts/<%= post.id%>/comments">
+	<input type="submit" class ="btn btn-xs btn-success" value="Go to Comments">
+</form>
+
+<form action="/logout">
+	<input type="submit" class ="btn btn-xs btn-success" value="Logout">
+</form>
+
+<form action="/posts/<%= post.id%>?_method=put" method="POST" class="form-inline">
+
+	<div id="post-title" class="text-box">
+	    <label for="title">Post Title: </label>
+	    <input type="text" name="post[title]" id="title" class="form-control" value = "<%=post.title%>" autofocus>
+	</div>
+
+	<div id ="post-body" class="text-box">	
+		<label for="post">
+			Post Body:
+			<textarea name="post[body]" rows="20" cols="90" id="post" class="form-control"> <%= post.body %> </textarea>
+		</label>
+	</div>
+
+	<input type="submit" value="Edit Post" class="btn btn-success">
+</form>
+
+
+
+<% include ../partials/footer %>

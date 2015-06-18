@@ -1,0 +1,25 @@
+<% include ../partials/header %>
+
+<h1>Edit Your Comment</h1>
+
+<form action="/posts/<%= comment.post._id %>/comments">
+	<input type="submit" class ="btn btn-xs btn-success" value="Return to Post">
+</form>
+<form action="/logout">
+	<input type="submit" class ="btn btn-xs btn-success" value="Logout">
+</form>
+
+
+<form action="/posts/<%= comment.post._id%>/comments/<%=comment.id%>?_method=put" class="form-inline" method="POST">
+
+	<div id ="comment-body" class="text-box">	
+		<label for="post">
+			Comment Body:
+			<textarea name="comment[commentBody]" rows="20" cols="90" id="post" class="form-control"> <%= comment.commentBody %> </textarea>
+		</label>
+	</div>
+
+	<input type="submit" value="Edit Comment" class="btn btn-success">
+</form>
+
+<% include ../partials/footer %>

@@ -1,0 +1,65 @@
+<% include ../partials/header %>
+
+
+<div class="nav-bar">
+	<form action="/logout">
+		<input type="submit" class ="btn btn-xs btn-success" value="Logout">
+	</form>
+
+	<form action="/posts">
+		<input type="submit" class ="btn btn-xs btn-success" value="Return to Posts">
+	</form>
+
+	<form action="/posts/<%= post.id%>/comments/new">
+		<input type="submit" class ="btn btn-xs btn-success" value="Add a Comment">
+	</form>
+</div>
+
+<h2> <%= post.title %> </h2>
+
+<div class="post-box">	
+	<%= post.body %>
+</div>
+
+<form action="/posts/<%= post.id %>/edit">
+	<input type="submit" class ="btn btn-xs btn-success" value="Edit Post">
+</form>
+
+<div class="comment-box">
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>Comment</th>
+				<th>User</th>
+				<th>Edit Comment</th>
+				<th>Delete Comment</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% post.comments.forEach(function(comment){ %> 
+			<tr>
+				<td> <%=comment.commentBody%></td>
+				<td> <a href="/"> [user name] </a> 
+				</td>
+				
+				<td> <form action="/posts/<%=post.id%>/comments/<%=comment.id%>/edit">
+						 	<input type="submit" class ="btn btn-xs btn-success" value="Edit">
+						 </form> 
+				</td>
+				<td> <form action="/posts/<%=post.id%>/comments/<%=comment.id%>?_method=delete" method= "POST">
+						<input type="submit" value="Remove" class="btn btn-danger btn-xs">		
+					</form>
+				</td>
+			</tr>
+			<% }) %>
+		</tbody>
+	</table>
+</div>
+
+
+
+
+
+
+
+<% include ../partials/footer %>

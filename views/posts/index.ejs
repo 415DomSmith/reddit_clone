@@ -1,0 +1,49 @@
+<% include ../partials/header %>
+
+<h1>Reddit Clone - Post Index</h1>
+
+<form action="/login">
+	<input type="submit" class ="btn btn-xs btn-success" value="Login">
+</form>
+
+<form action="/posts/new">
+	<input type="submit" class ="btn btn-xs btn-success" value="Add a New Post">
+</form>
+
+<form action="/logout">
+	<input type="submit" class ="btn btn-xs btn-success" value="Logout">
+</form>
+
+<div class="posts-box">
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th># of Comments</th>
+				<th>Author</th>
+				<th>Edit</th>
+				<th>Remove</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% post.forEach(function(post){ %> 
+			<tr>
+				<td> <a href="/posts/<%= post.id %>/comments"><%= post.title %></a> </td>
+				<td> [# of Comments]</td>
+				<td> [Poster name] </td>
+				<td> <form action="/posts/<%= post.id %>/edit">
+								<input type="submit" class ="btn btn-xs btn-success" value="Edit Post">
+							</form>
+				</td>
+				<td> <form action="/posts/<%= post.id %>?_method=delete" method= "POST">
+								<input type="submit" value="X" class="btn btn-danger btn-xs">		
+						 </form> 
+				</td>
+			</tr>
+			<% }) %>
+		</tbody>
+	</table>
+</div>
+
+
+<% include ../partials/footer %>
