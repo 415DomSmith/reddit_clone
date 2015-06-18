@@ -10,13 +10,27 @@ var routeHelpers = {
     }
   },
 
-//TODO - Figure out how to set up ensureCorrectUser (for posts and comments)
-  ensureCorrectUser: function(req, res, next) {
-    db.Post.findById(req.params.id, function(err,posts){
-      if (post.ownerId !== req.session.id) {
-        res.redirect('/posts');
+  ensureCorrectUserPost: function(req, res, next) {
+    db.Post.findById(req.params.id, function (err, post){
+      console.log(post);
+      if (post.user != req.session.id) {
+        res.redirect("/posts")
       }
       else {
+       return next();
+      }
+    });
+  },
+
+  ensureCorrectUserComment: function(req, res, next) {
+    db.Comment.findById(req.params.id, function (err, data){
+      console.log(data);
+      if (data.user != req.session.id) {
+        db.Comment.findById(req.params.id, function (err, comment) {
+          console.log(comment);
+          res.redirect("/posts/" + comment.post + "/comments")
+        })
+      } else {
        return next();
       }
     });

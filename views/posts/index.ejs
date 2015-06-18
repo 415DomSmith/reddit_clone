@@ -29,8 +29,8 @@
 			<% post.forEach(function(post){ %> 
 			<tr>
 				<td> <a href="/posts/<%= post.id %>/comments"><%= post.title %></a> </td>
-				<td> [# of Comments]</td>
-				<td> [Poster name] </td>
+				<td> [# of comments] </td>
+				<td> <%= post.user.username %> </td>
 				<td> <form action="/posts/<%= post.id %>/edit">
 								<input type="submit" class ="btn btn-xs btn-success" value="Edit Post">
 							</form>
