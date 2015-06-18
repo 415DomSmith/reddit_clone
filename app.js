@@ -56,6 +56,14 @@ app.post('/signup', function (req, res){
 	});
 });
 
+//TODO -- make user index route to show all users
+
+
+//TODO -- make user show page to show an individual user
+
+
+//TODO -- make 'your account' page to show users profile based on session id
+
 //login page
 
 app.get('/login', routeMiddleware.preventLoginSignup, function (req, res){
@@ -79,6 +87,7 @@ app.post('/login', function (req, res){
 
 app.get('/posts', function (req, res){
 	db.Post.find({}, function (err, post){
+		//db.Post.find(({}).populate('comments').exec(function (err, post){
 		if(err){
 			res.render('errors/404')
 		} else {
@@ -112,8 +121,8 @@ app.post('/posts', routeMiddleware.ensureLoggedIn, function (req, res){
 // SHOW = post show is also comments index page (child of user, parent of comments, Many of Many?)
 
 app.get('/posts/:id/comments', function (req, res){
-	db.Post.findById(req.params.id).populate('comments').exec(function (err, post){ //populates the post object with comments associated with that post
-		// console.log(post);
+	db.Post.findById(req.params.id).populate('comments').populate('user').exec(function (err, post){ //populates the post object with comments associated with that post
+		console.log(post);
 		res.render('comments/index', {post : post})
 	})
 });

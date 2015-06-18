@@ -39,7 +39,7 @@
 			<% post.comments.forEach(function(comment){ %> 
 			<tr>
 				<td> <%=comment.commentBody%></td>
-				<td> <a href="/"> [user name] </a> 
+				<td> <a href="/"> <%= comment.user %> </a> 
 				</td>
 				
 				<td> <form action="/posts/<%=post.id%>/comments/<%=comment.id%>/edit">

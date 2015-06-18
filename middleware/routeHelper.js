@@ -23,17 +23,17 @@ var routeHelpers = {
   },
 
   ensureCorrectUserComment: function(req, res, next) {
-    db.Comment.findById(req.params.id, function (err, data){
+    db.Comment.findById(req.params.id, function (err, data){ //finds comment based on the id in the url/params
       console.log(data);
-      if (data.user != req.session.id) {
-        db.Comment.findById(req.params.id, function (err, comment) {
+      if (data.user != req.session.id) { //checks to see if the users id (based on session id) matches the id saved in the data object (data.id)
+        db.Comment.findById(req.params.id, function (err, comment) { 
           console.log(comment);
           res.redirect("/posts/" + comment.post + "/comments")
         })
       } else {
        return next();
       }
-    });
+    })
   },
 
   preventLoginSignup: function(req, res, next) {
